@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://64hrc6j1c6j0"]
+
+[ext_resource type="Texture2D" uid="uid://l2ie5f7thahj" path="res://assets/texture_09.png" id="1_g4ijx"]
+[ext_resource type="PackedScene" uid="uid://b2lwqgt5ebaxf" path="res://car.tscn" id="1_rm7je"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_24jdr"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_1qw5y"]
+sky_material = SubResource("ProceduralSkyMaterial_24jdr")
+
+[sub_resource type="Environment" id="Environment_nadnb"]
+background_mode = 2
+sky = SubResource("Sky_1qw5y")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obh6t"]
+albedo_texture = ExtResource("1_g4ijx")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nadnb")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material_override = SubResource("StandardMaterial3D_obh6t")
+use_collision = true
+size = Vector3(50, 1, 50)
+
+[node name="RigidBody3D" parent="." instance=ExtResource("1_rm7je")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1, 1.5)
+use_collision = true
+size = Vector3(4, 1, 4)
