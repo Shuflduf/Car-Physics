@@ -1,22 +1,20 @@
-[gd_scene load_steps=11 format=3 uid="uid://64hrc6j1c6j0"]
+[gd_scene load_steps=10 format=3 uid="uid://64hrc6j1c6j0"]
 
-[ext_resource type="Texture2D" uid="uid://dhfl262yp60jv" path="res://assets/SkyHDR.hdr" id="1_a8ycu"]
 [ext_resource type="PackedScene" uid="uid://c5fef7d0pora1" path="res://scenes/new_car.tscn" id="2_5ha4d"]
 [ext_resource type="Texture2D" uid="uid://l2ie5f7thahj" path="res://assets/texture_09.png" id="3_3qe0q"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0rlmk"]
-panorama = ExtResource("1_a8ycu")
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3jp8r"]
 
 [sub_resource type="Sky" id="Sky_1qw5y"]
-sky_material = SubResource("PanoramaSkyMaterial_0rlmk")
+sky_material = SubResource("ProceduralSkyMaterial_3jp8r")
 
 [sub_resource type="Environment" id="Environment_nadnb"]
 background_mode = 2
 sky = SubResource("Sky_1qw5y")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 1
 tonemap_mode = 2
-ssr_enabled = true
-ssao_enabled = true
-ssil_enabled = true
 glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_obh6t"]
