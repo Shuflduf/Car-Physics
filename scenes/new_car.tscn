@@ -1,9 +1,30 @@
-[gd_scene load_steps=9 format=4 uid="uid://c5fef7d0pora1"]
+[gd_scene load_steps=13 format=4 uid="uid://c5fef7d0pora1"]
 
 [ext_resource type="Script" path="res://new_car.gd" id="1_k0fde"]
+[ext_resource type="Texture2D" uid="uid://cv1btv3wvcyor" path="res://assets/sprits/car_back.png" id="2_sypbo"]
+[ext_resource type="Texture2D" uid="uid://b7scq27uo1j50" path="res://assets/sprits/side_back_car.png" id="3_ooe4s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_g4wa2"]
-size = Vector3(1, 1, 2.32562)
+size = Vector3(1, 1, 0.4)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h5fq1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sypbo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ooe4s")
+}],
+"loop": true,
+"name": &"side",
+"speed": 5.0
+}]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wrhof"]
 
@@ -71,15 +92,24 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_i73vb")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_nlopa"]
+size = Vector3(1.4, 1, 0.9)
+
 [node name="NewCar" type="CharacterBody3D"]
 script = ExtResource("1_k0fde")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.154633)
 shape = SubResource("BoxShape3D_g4wa2")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(3.21603, 0, 0, 0, 3.21603, 0, 0, 0, 3.21603, 0, 0, 0)
+alpha_cut = 1
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_h5fq1")
 
 [node name="Meshes" type="Node3D" parent="."]
 transform = Transform3D(-1.8663e-08, 0, 0.426961, 0, 0.426961, 0, -0.426961, 0, -1.8663e-08, 0, 0.0826843, 0)
+visible = false
 
 [node name="Cube" type="MeshInstance3D" parent="Meshes"]
 transform = Transform3D(0.757129, 0, 0, 0, 0.757129, 0, 0, 0, 0.757129, 0.614295, -0.212641, 0)
@@ -96,3 +126,14 @@ top_level = true
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.7, -3)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+freeze = true
+freeze_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_nlopa")
+
+[node name="Generic6DOFJoint3D" type="Generic6DOFJoint3D" parent="."]
+node_a = NodePath("..")
+node_b = NodePath("../RigidBody3D")

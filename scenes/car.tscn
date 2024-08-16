@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=4 uid="uid://b2lwqgt5ebaxf"]
 
 [ext_resource type="Script" path="res://car.gd" id="1_rm806"]
-[ext_resource type="PackedScene" uid="uid://c7xglr73tllga" path="res://wheel_base.tscn" id="2_mrcyd"]
+[ext_resource type="PackedScene" uid="uid://c7xglr73tllga" path="res://scenes/wheel_base.tscn" id="2_mrcyd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ept04"]
 size = Vector3(0.873047, 0.724671, 2.2093)
