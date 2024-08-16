@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c7xglr73tllga" path="res://wheel_base.tscn" id="2_mrcyd"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ept04"]
-size = Vector3(0.873047, 0.249542, 2.2093)
+size = Vector3(0.873047, 0.724671, 2.2093)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wrhof"]
 
@@ -76,24 +76,21 @@ shadow_mesh = SubResource("ArrayMesh_i73vb")
 script = ExtResource("1_rm806")
 
 [node name="Body" type="CollisionShape3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.00194129, -0.154526, 0.0522777)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.00194129, 0.0830382, 0.0522777)
 shape = SubResource("BoxShape3D_ept04")
 
 [node name="FrontLeft" parent="." instance=ExtResource("2_mrcyd")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.311365, -0.334831, -0.614175)
-use_as_traction = false
-
-[node name="FrontRight" parent="." instance=ExtResource("2_mrcyd")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.319, -0.335, -0.614)
-use_as_traction = false
-
-[node name="BackLeft" parent="." instance=ExtResource("2_mrcyd")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.311, -0.335, 0.544)
-use_as_steering = false
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.311365, -0.234831, -0.614175)
 
 [node name="BackRight" parent="." instance=ExtResource("2_mrcyd")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.318929, -0.334831, 0.543883)
-use_as_steering = false
+desired_direction = 1
+
+[node name="FrontRight" parent="." instance=ExtResource("2_mrcyd")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.319, -0.235, -0.614)
+desired_direction = 1
+
+[node name="BackLeft" parent="." instance=ExtResource("2_mrcyd")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.311, -0.235, 0.544)
 
 [node name="Meshes" type="Node3D" parent="."]
 transform = Transform3D(5.41302e-08, 0, 0.412785, 0, 0.412785, 0, -0.412785, 0, 5.41302e-08, 0.00194128, 0.0705818, 0.21891)

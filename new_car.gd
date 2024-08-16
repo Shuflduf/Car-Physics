@@ -8,11 +8,13 @@ func _process(_delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	velocity.y += delta * get_gravity().y
-	velocity += rf(Vector3(0, 0, Input.get_axis("accelerate", "deccelerate") * 0.1))
+	var accel = Input.get_axis("accelerate", "deccelerate") * 0.1
+	velocity += rf(Vector3(0, 0, accel))
+
+	velocity.z *= 0.99
+	print(velocity)
 
 	rotation.y += Input.get_axis("right", "left") * delta
-
-	#velocity = rf(velocity)
 
 	move_and_slide()
 

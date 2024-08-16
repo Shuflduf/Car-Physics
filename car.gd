@@ -1,23 +1,48 @@
 class_name Vehicle
 extends VehicleBody3D
 
-@export var max_rpm = 500
-@export var max_torque = 200
+@onready var wheels: Array[BaseWheel] = [$FrontLeft, $BackRight, $FrontRight, $BackLeft]
 
-@onready var back_wheels = [$BackLeft, $BackRight]
+enum Direction {
+	LEFT,
+	RIGHT,
+	NONE,
+}
 
 func _process(_delta: float) -> void:
 	$CameraPivot.global_position = global_position
 	$CameraPivot.rotation.y = (rotation.y + PI)
 
+func rotate_forwards(dir: Vector3) -> Vector3:
+	return dir.rotated(Vector3.UP, rotation.y)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 
-	#rotation_degrees.x = clamp(rotation_degrees.x, -30, 30)
-	rotation_degrees.z = 0
+	engine_force = Input.get_axis("deccelerate", "accelerate") * 100
 
-	steering = lerp(steering, Input.get_axis("right", "left") * 0.4, 5 * delta)
+	var dir = Input.get_axis("right", "left")
+	if dir:
+		if dir > 0.1:
+			turn(Direction.LEFT, 1)
+		elif dir < -0.1:
+			turn(Direction.RIGHT, 1)
+	else:
+		for wheel in wheels:
+			wheel.engine_force = 0
 
+<<<<<<< HEAD
 	var accel = Input.get_axis("deccelerate", "accelerate")
 
 	engine_force = accel * max_torque * (1.0 / max_rpm)
+=======
+
+func turn(dir: Direction, strength: int):
+	for wheel in wheels:
+		match wheel.desired_direction:
+			Direction.NONE:
+				pass
+			dir:
+				wheel.engine_force = -strength * 50
+			_:
+				wheel.engine_force = strength * 50
+>>>>>>> parent of 8d5be6d (better, but still bad car movement)
