@@ -19,9 +19,5 @@ func _physics_process(delta: float) -> void:
 	steering = lerp(steering, Input.get_axis("right", "left") * 0.4, 5 * delta)
 
 	var accel = Input.get_axis("deccelerate", "accelerate")
-	for i in back_wheels:
 
-		var rpm = abs(i.get_rpm())
-		i.engine_force = accel * max_torque * (1 - rpm / max_rpm)
-
-	#engine_force =
+	engine_force = accel * max_torque * (1.0 / max_rpm)

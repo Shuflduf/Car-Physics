@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://l2ie5f7thahj" path="res://assets/texture_09.png" id="1_g4ijx"]
 [ext_resource type="Texture2D" uid="uid://dhfl262yp60jv" path="res://assets/SkyHDR.hdr" id="1_h4rjh"]
-[ext_resource type="PackedScene" uid="uid://b2lwqgt5ebaxf" path="res://car.tscn" id="1_rm7je"]
+[ext_resource type="PackedScene" uid="uid://c5fef7d0pora1" path="res://new_car.tscn" id="2_gfweu"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0rlmk"]
 panorama = ExtResource("1_h4rjh")
@@ -41,13 +41,13 @@ environment = SubResource("Environment_nadnb")
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
 shadow_enabled = true
 
+[node name="NewCar" parent="." instance=ExtResource("2_gfweu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 material_override = SubResource("StandardMaterial3D_obh6t")
 use_collision = true
 size = Vector3(50, 1, 50)
-
-[node name="RigidBody3D" parent="." instance=ExtResource("1_rm7je")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 1, 3.5)

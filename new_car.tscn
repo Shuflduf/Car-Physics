@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=4 uid="uid://b2lwqgt5ebaxf"]
+[gd_scene load_steps=9 format=4 uid="uid://c5fef7d0pora1"]
 
-[ext_resource type="Script" path="res://car.gd" id="1_rm806"]
-[ext_resource type="PackedScene" uid="uid://c7xglr73tllga" path="res://wheel_base.tscn" id="2_mrcyd"]
+[ext_resource type="Script" path="res://new_car.gd" id="1_k0fde"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_ept04"]
-size = Vector3(0.873047, 0.249542, 2.2093)
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4wa2"]
+size = Vector3(1, 1, 2.32562)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wrhof"]
 
@@ -72,31 +71,15 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_i73vb")
 
-[node name="Oldcar" type="VehicleBody3D"]
-script = ExtResource("1_rm806")
+[node name="NewCar" type="CharacterBody3D"]
+script = ExtResource("1_k0fde")
 
-[node name="Body" type="CollisionShape3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.00194129, -0.154526, 0.0522777)
-shape = SubResource("BoxShape3D_ept04")
-
-[node name="FrontLeft" parent="." instance=ExtResource("2_mrcyd")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.311365, -0.334831, -0.614175)
-use_as_traction = false
-
-[node name="FrontRight" parent="." instance=ExtResource("2_mrcyd")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.319, -0.335, -0.614)
-use_as_traction = false
-
-[node name="BackLeft" parent="." instance=ExtResource("2_mrcyd")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.311, -0.335, 0.544)
-use_as_steering = false
-
-[node name="BackRight" parent="." instance=ExtResource("2_mrcyd")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.318929, -0.334831, 0.543883)
-use_as_steering = false
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.154633)
+shape = SubResource("BoxShape3D_g4wa2")
 
 [node name="Meshes" type="Node3D" parent="."]
-transform = Transform3D(5.41302e-08, 0, 0.412785, 0, 0.412785, 0, -0.412785, 0, 5.41302e-08, 0.00194128, 0.0705818, 0.21891)
+transform = Transform3D(-1.8663e-08, 0, 0.426961, 0, 0.426961, 0, -0.426961, 0, -1.8663e-08, 0, 0.0826843, 0)
 
 [node name="Cube" type="MeshInstance3D" parent="Meshes"]
 transform = Transform3D(0.757129, 0, 0, 0, 0.757129, 0, 0, 0, 0.757129, 0.614295, -0.212641, 0)
